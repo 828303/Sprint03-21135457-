@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GateBoys.Models.rating>
+
+@{
+    ViewBag.Title = "myRatings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="container">
+
+    <h2>myRatings</h2>
+
+    <table class="timetable_sub">
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment)
+            </th>
+            <th>
+            <th>
+                Attatchment
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img style="height:100px;width:100px;" class="img img-responsive img-rounded img-thumbnail" src="/InventoryProducts/GetPic/@Html.DisplayFor(modelItem=>item.productId)" alt="Pic" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment)
+                </td>
+
+                @if (item.ratePic == null)
+                {
+                    <td>No Picture</td>
+                }
+                else
+                {
+                    <td>
+                        <img style="height:100px;width:100px;" class="img img-responsive img-rounded img-thumbnail" src="/ratings/GetPic/@Html.DisplayFor(modelItem=>item.id)" alt="Evidence" />
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.rateDate)
+                </td>
+                <td>
+                    <a href="/main/details/@item.productId">view replies</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
